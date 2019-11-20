@@ -24,7 +24,7 @@ var createScene = function() {
   let skyMaterial = new B.SkyMaterial("skyMaterial", scene);
   skyMaterial.backFaceCulling = false;
 
-  var skybox = B.Mesh.CreateBox("skyBox", 1000.0, scene);
+  var skybox = B.Mesh.CreateBox("skyBox", 100.0, scene);
   skybox.material = skyMaterial;
   skyMaterial.turbidity = 1;
   skyMaterial.luminance = 0.5;
@@ -32,10 +32,11 @@ var createScene = function() {
   skyMaterial.sunPosition = new B.Vector3(0, 100, 500);
 
   /* Create Ground */
-  var ground = BABYLON.MeshBuilder.CreateGround("ground", {height: 1000, width: 1000, subdivisions: 4}, scene);
+  var ground = BABYLON.MeshBuilder.CreateGround("ground", {height: 100, width: 100, subdivisions: 1}, scene);
 
   ground.material = new B.StandardMaterial("ground_mat", scene);
-  ground.material.ambientColor = new B.Color3(1, 0, 0);
+  //ground.material.ambientColor = new B.Color3(1, 0, 0);
+  ground.material.ambientTexture = new BABYLON.Texture("assets/textures/themeParkLayout.png", scene);
 
 
   /* Enable gravity */
@@ -49,6 +50,9 @@ var createScene = function() {
   ground.checkCollisions = true;
 
   /* Create shadows */
+
+  /* Load assets */
+  let themeParkMap = createThemeParkMap(scene);
 
 
   return scene;

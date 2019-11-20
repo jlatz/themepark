@@ -1,7 +1,3 @@
-/*
- * Copyright 2016 Eric McGregor
- */
-
 var B = BABYLON;
 
 /* Get the canvas element from the HTML page */
@@ -14,21 +10,32 @@ var createScene = function() {
 
   /* Scene */
   let scene = new B.Scene(engine);
-  //scene.clearColor = new B.Color3(255,255,255);
+  scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
 
   /* Camera */
-  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(0, 0, -10), scene);
-  camera.setTarget(B.Vector3.Zero());
+  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(0, 2, 0), scene);
+  //camera.setTarget(B.Vector3.Zero());
   camera.attachControl(canvas, true);
 
   /* Create Lights */
-  var sunlight = new B.DirectionalLight("sunlight", new B.Vector3(0,-1,1), scene);
+  var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
+
+  /* Create Skybox */
+  let skyMaterial = new B.SkyMaterial("skyMaterial", scene);
+  skyMaterial.backFaceCulling = false;
+
+  var skybox = B.Mesh.CreateBox("skyBox", 1000.0, scene);
+  skybox.material = skyMaterial;
+  skyMaterial.turbidity = 1;
+  skyMaterial.luminance = 0.5;
+  skyMaterial.useSunPosition = true;
+  skyMaterial.sunPosition = new B.Vector3(0, 100, 500);
 
   /* Create Ground */
-  var ground = new B.Mesh.CreateGround("ground", 974.5, 430, 0, scene);
+  var ground = BABYLON.MeshBuilder.CreateGround("ground", {height: 1000, width: 1000, subdivisions: 4}, scene);
+
   ground.material = new B.StandardMaterial("ground_mat", scene);
-  ground.material.
-  ground.setPivotMatrix(B.Matrix.Translation(487.25, 0, -214));  //Translate local origin
+  ground.material.ambientColor = new B.Color3(1, 0, 0);
 
 
   /* Enable gravity */

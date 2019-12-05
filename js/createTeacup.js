@@ -21,13 +21,11 @@ function createTeacup(scene) {
     gold.diffuseColor = new BABYLON.Color3(1, 0.84313725, 0);
 
 
-
     var baseCircle = BABYLON.MeshBuilder.CreateCylinder("cone", {diameterTop: 12, height: .5, diameterBottom: 12}, scene);
     baseCircle.position.x = -40;
     baseCircle.position.z = -17;
     baseCircle.position.y = 1;
     baseCircle.material = baseColor;
-
 
 
     var base = BABYLON.MeshBuilder.CreateCylinder("cone", {diameterTop: 8, height: 1, diameterBottom: 9}, scene);

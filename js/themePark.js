@@ -14,7 +14,7 @@ var createScene = function() {
   scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
 
   /* Camera */
-  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(-40, 2, -30), scene);
+  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(-20, 2, -18), scene);
   //camera.setTarget(B.Vector3.Zero());
   camera.attachControl(canvas, true);
 
@@ -54,7 +54,7 @@ var createScene = function() {
 
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
-  let teaCup = createTeacup(scene);
+  let teaCup = createTeacup(scene, camera);
 
   return scene;
 };

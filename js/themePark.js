@@ -15,7 +15,7 @@ var createScene = function() {
 
   /* Camera */
   var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(0, 2, 0), scene);
-  camera.setTarget(B.Vector3.Zero());
+  //camera.setTarget(new B.Vector3(0, 2, 0));
   camera.attachControl(canvas, true);
 
   /* Create Lights */
@@ -57,6 +57,7 @@ var createScene = function() {
   let carousel = createCarousel(scene);
   let createRollercoaster = createRollerCoaster(scene,camera);
   let teaCup = createTeacup(scene, camera);
+  let dropTower = createDropTower(scene);
 
   return scene;
 };

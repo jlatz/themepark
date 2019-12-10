@@ -54,6 +54,7 @@ var createScene = function() {
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
 
+  createWaterGame(scene);
 
   return scene;
 };
@@ -68,13 +69,14 @@ scene = createScene();
 
 var loop = function() {
   scene.render();
+  waterGunLoop();
 };
 
 engine.runRenderLoop(loop);
 
 var resize = function() {
   engine.resize();
-}
+};
 
 window.addEventListener("resize", resize);
 

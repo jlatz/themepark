@@ -53,7 +53,7 @@ var createScene = function() {
 
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
-
+  let createRollercoaster = createRollerCoaster(scene,camera);
 
   return scene;
 };

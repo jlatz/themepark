@@ -60,6 +60,7 @@ var createScene = function() {
   let teaCup = createTeacup(scene, camera);
   let dropTower = createDropTower(scene);
   let woodenRollerCoaster = createWoodenRollerCoaster(scene);
+  createFerrisWheel(scene);
 
   return scene;
 };

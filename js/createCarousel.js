@@ -1,14 +1,19 @@
 function createCarousel(scene) {
 
-    var floor = BABYLON.MeshBuilder.CreateSphere("sphere", {diameterX: 14, diameterY: 2, diameterZ: 14}, scene);
-    floor.position.y = .1;
-    floor.position.x = -1;
-    floor.position.z = -10;
+    var myMaterial = new BABYLON.StandardMaterial("myMaterial", scene);
+    myMaterial.emissiveTexture = new BABYLON.Texture("assets/carouselAsset/flag.jpg", scene);
+    myMaterial.diffuseTexture = new BABYLON.Texture("assets/carouselAsset/flag.jpg", scene);
+
+    // var floor = BABYLON.MeshBuilder.CreateSphere("sphere", {diameterX: 14, diameterY: 2, diameterZ: 14}, scene);
+    // floor.position.y = .1;
+    // floor.position.x = -1;
+    // floor.position.z = -10;
 
     var pillar = BABYLON.MeshBuilder.CreateCylinder("cone", {diameterTop: 1.5, height: 7, diameterBottom: 1.5}, scene);
     pillar.position.x = -1;
     pillar.position.y = 3;
     pillar.position.z = -10;
+    pillar.material=myMaterial;
 
    var ceiling = BABYLON.MeshBuilder.CreateSphere("sphere", {diameterX: 14, diameterY: .3, diameterZ: 14}, scene);
   //  var ceiling = BABYLON.MeshBuilder.CreateSphere("sphere", {diameterX: 7, diameterY: .3, diameterZ: 12}, scene);
@@ -21,15 +26,24 @@ function createCarousel(scene) {
     ceiling1.position.y = 8.5;
     ceiling1.position.x = -1;
     ceiling1.position.z = -10;
+    ceiling1.material=myMaterial;
 
-    var torus = BABYLON.MeshBuilder.CreateTorus("torus", {thickness: 0.9, diameter:12}, scene);
-    torus.position.y = .7;
+    var myMaterial2 = new BABYLON.StandardMaterial("myMaterial", scene);
+    myMaterial2.diffuseTexture = new BABYLON.Texture("assets/carouselAsset/floor2.jpg", scene);
+
+
+    var torus = BABYLON.MeshBuilder.CreateTorus("torus", {thickness: 0.4, diameter:14}, scene);
+    torus.position.y = .3;
     torus.position.x = -1;
     torus.position.z = -10;
-    var floor2 = BABYLON.MeshBuilder.CreateSphere("sphere", {diameterX: 12.5, diameterY: .3, diameterZ: 12.5}, scene);
-    floor2.position.y = 1;
+    torus.material =myMaterial2;
+
+
+    var floor2 = BABYLON.MeshBuilder.CreateSphere("sphere", {diameterX: 14, diameterY: .3, diameterZ: 14}, scene);
+    floor2.position.y =.5;
     floor2.position.x = -1;
     floor2.position.z = -10;
+    floor2.material =myMaterial2;
 
 
     var pillar2 = BABYLON.MeshBuilder.CreateCylinder("cone2", {diameterTop: .1, height: 5, diameterBottom: .1}, scene);
@@ -90,15 +104,16 @@ function createCarousel(scene) {
         pivot1.rotate(Axis1, angle1, BABYLON.Space.WORLD);
     });
 
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
         container.meshes[0].rotate(BABYLON.Axis.Y, 1.2, BABYLON.Space.LOCAL);
         container.meshes[0].scaling = new BABYLON.Vector3(.010, .010,.010);
+        container.meshes[0].material=myMaterial;
 
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStarta = new BABYLON.Vector3(3.5 , -1.5, -4);
+        var pilotStarta = new BABYLON.Vector3(3.5 , -2.0, -4);
         var pivot = new BABYLON.TransformNode("root1");
         pivot.position = CoR_At;
         container.meshes[0].parent = pivot;
@@ -108,14 +123,14 @@ function createCarousel(scene) {
         })
 
     });
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
         container.meshes[0].rotate(BABYLON.Axis.Y, 1.9, BABYLON.Space.LOCAL);
         container.meshes[0].scaling = new BABYLON.Vector3(.010, .010,.010);
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStartb = new BABYLON.Vector3(-.1, -1.5, -5.2);
+        var pilotStartb = new BABYLON.Vector3(-.1, -2.0, -5.2);
         var pivot = new BABYLON.TransformNode("root2");
         pivot.position = CoR_At;
         container.meshes[0].parent = pivot;
@@ -128,7 +143,7 @@ function createCarousel(scene) {
     });
 
 
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
 let horse = container.meshes[0];
         horse.rotate(BABYLON.Axis.Y, .4, BABYLON.Space.LOCAL);
@@ -136,7 +151,7 @@ let horse = container.meshes[0];
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStartc = new BABYLON.Vector3(5, -1.5, -1.3);
+        var pilotStartc = new BABYLON.Vector3(5, -2.0, -1.3);
         var pivot = new BABYLON.TransformNode("root3");
         pivot.position = CoR_At;
       horse.parent = pivot;
@@ -149,7 +164,7 @@ let horse = container.meshes[0];
 
 
 
-BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
     container.addAllToScene();
     let horse = container.meshes[0];
     horse.rotate(BABYLON.Axis.Y, -10, BABYLON.Space.LOCAL);
@@ -158,7 +173,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
     var CoR_At = new BABYLON.Vector3(-1, 3, -10);
     var Axis = new BABYLON.Vector3(0,1, 0);
     var angle=.01;
-    var pilotStartd = new BABYLON.Vector3(-3.7, -1.5, -4);
+    var pilotStartd = new BABYLON.Vector3(-3.7, -2.0, -4);
     var pivot = new BABYLON.TransformNode("root4");
     pivot.position = CoR_At;
     horse.parent = pivot;
@@ -169,7 +184,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
 
 });
 
-BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
     container.addAllToScene();
     let horse = container.meshes[0];
     horse.rotate(BABYLON.Axis.Y, 3.4, BABYLON.Space.LOCAL);
@@ -177,7 +192,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
     var CoR_At = new BABYLON.Vector3(-1, 3, -10);
     var Axis = new BABYLON.Vector3(0,1, 0);
     var angle=.01;
-    var pilotStarte = new BABYLON.Vector3(-5, -1.5, -1.);
+    var pilotStarte = new BABYLON.Vector3(-5, -2.0, -1.);
     var pivot = new BABYLON.TransformNode("root");
     pivot.position = CoR_At;
     horse.parent = pivot;
@@ -188,7 +203,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
 
 });
 
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
         let horse = container.meshes[0];
         horse.rotate(BABYLON.Axis.Y, 4.7, BABYLON.Space.LOCAL);
@@ -197,7 +212,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStartf = new BABYLON.Vector3(-2, -1.5, 4);
+        var pilotStartf = new BABYLON.Vector3(-2, -2.0, 4);
         var pivot = new BABYLON.TransformNode("root");
         pivot.position = CoR_At;
         horse.parent = pivot;
@@ -208,7 +223,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
 
     });
 
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
         let horse = container.meshes[0];
         horse.rotate(BABYLON.Axis.Y, -.9, BABYLON.Space.LOCAL);
@@ -217,7 +232,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStartg = new BABYLON.Vector3(1.5, -1.5, 4.5);
+        var pilotStartg = new BABYLON.Vector3(1.5, -2.0, 4.5);
         var pivot = new BABYLON.TransformNode("root");
         pivot.position = CoR_At;
         horse.parent = pivot;
@@ -227,7 +242,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
         })
 
     });
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
         let horse = container.meshes[0];
         horse.rotate(BABYLON.Axis.Y, 0, BABYLON.Space.LOCAL);
@@ -236,7 +251,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStarth = new BABYLON.Vector3(4.5, -1.5, 2.5);
+        var pilotStarth = new BABYLON.Vector3(4.5, -2.0, 2.5);
         var pivot = new BABYLON.TransformNode("root");
         pivot.position = CoR_At;
         horse.parent = pivot;
@@ -246,7 +261,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
         })
 
     });
-    BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(function (container) {
+    BABYLON.SceneLoader.LoadAssetContainerAsync("", "assets/carouselAsset/horse2.babylon", scene).then(function (container) {
         container.addAllToScene();
         let horse = container.meshes[0];
         horse.rotate(BABYLON.Axis.Y, 10, BABYLON.Space.LOCAL);
@@ -255,7 +270,7 @@ BABYLON.SceneLoader.LoadAssetContainerAsync("", "horse2.babylon", scene).then(fu
         var CoR_At = new BABYLON.Vector3(-1, 3, -10);
         var Axis = new BABYLON.Vector3(0,1, 0);
         var angle=.01;
-        var pilotStarti = new BABYLON.Vector3(-4, -1.5, 2.4);
+        var pilotStarti = new BABYLON.Vector3(-4, -2.0, 2.4);
         var pivot = new BABYLON.TransformNode("root");
         pivot.position = CoR_At;
         horse.parent = pivot;

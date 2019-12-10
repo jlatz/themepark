@@ -13,9 +13,7 @@ var createScene = function() {
   scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
 
   /* Camera */
- //  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(0, 2, 0), scene);
-  var camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, new BABYLON.Vector3(0, 2, 0), scene);
-  //camera.setTarget(B.Vector3.Zero());
+    var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(0, 2, 0), scene);
   camera.attachControl(canvas, true);
 
   /* Create Lights */

@@ -58,6 +58,7 @@ var createScene = function() {
   let createRollercoaster = createRollerCoaster(scene,camera);
   let teaCup = createTeacup(scene, camera);
   let dropTower = createDropTower(scene);
+  let woodenRollerCoaster = createWoodenRollerCoaster(scene);
 
   return scene;
 };

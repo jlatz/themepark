@@ -54,6 +54,7 @@ var createScene = function() {
 
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
+  let createRollercoaster = createRollerCoaster(scene,camera);
   let teaCup = createTeacup(scene, camera);
 
   return scene;

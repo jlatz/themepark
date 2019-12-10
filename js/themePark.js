@@ -54,6 +54,7 @@ var createScene = function() {
 
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
+  createWaterGame(scene);
   let carousel = createCarousel(scene);
   let createRollercoaster = createRollerCoaster(scene,camera);
   let teaCup = createTeacup(scene, camera);
@@ -73,13 +74,14 @@ scene = createScene();
 
 var loop = function() {
   scene.render();
+  waterGunLoop();
 };
 
 engine.runRenderLoop(loop);
 
 var resize = function() {
   engine.resize();
-}
+};
 
 window.addEventListener("resize", resize);
 

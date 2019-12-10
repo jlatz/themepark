@@ -14,12 +14,12 @@ var createScene = function() {
   scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
 
   /* Camera */
-  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(-20, 2, -18), scene);
-  //camera.setTarget(B.Vector3.Zero());
+  var camera = new B.UniversalCamera("UniversalCamera", new B.Vector3(0, 2, 0), scene);
+  camera.setTarget(B.Vector3.Zero());
   camera.attachControl(canvas, true);
 
   /* Create Lights */
-  var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
+ var light = new BABYLON.HemisphericLight("hemiLight", new BABYLON.Vector3(-1, 1, 0), scene);
 
   /* Create Skybox */
   let skyMaterial = new B.SkyMaterial("skyMaterial", scene);
@@ -54,6 +54,7 @@ var createScene = function() {
 
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
+  let carousel = createCarousel(scene);
   let createRollercoaster = createRollerCoaster(scene,camera);
   let teaCup = createTeacup(scene, camera);
 

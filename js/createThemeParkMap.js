@@ -5,7 +5,7 @@ function createThemeParkMap(scene) {
   box.material.diffuseTexture = new BABYLON.Texture("assets/textures/janidy.png", scene);
   box.material.diffuseTexture.hasAlpha = true;
 
-  box.translate(new BABYLON.Vector3(0, 0.5, 25), 1, BABYLON.Space.WORLD);
+  box.translate(new BABYLON.Vector3(0.1, 0.5, 25), 1, BABYLON.Space.WORLD);
 
   return box;
 

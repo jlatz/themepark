@@ -53,6 +53,7 @@ var createScene = function() {
 
   /* Load assets */
   let themeParkMap = createThemeParkMap(scene);
+  let waterslide = createWaterslide(scene);
 
 
   return scene;

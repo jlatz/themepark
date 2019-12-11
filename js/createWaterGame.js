@@ -59,7 +59,27 @@ function createWaterGame(scene){
 
     target = createWaterTarget(scene);
     target.position = new v3(0, 2.25, 12.3);
-
+    watergun.actionManager = new BABYLON.ActionManager(scene);
+    watergun.actionManager.registerAction(
+        new BABYLON.ExecuteCodeAction(
+            {
+                trigger: BABYLON.ActionManager.OnPickTrigger
+            },
+            function(){
+                activateGame(scene);
+            }
+        )
+    )
+        .then(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnPickTrigger
+                },
+                function(){
+                    deactivateGame(scene);
+                }
+            )
+        );
     {
         scene.actionManager = new BABYLON.ActionManager(scene);
         scene.actionManager.registerAction(
@@ -150,28 +170,6 @@ function createWaterGame(scene){
                 }
             )
         );
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: 'q'
-                },
-                function () {
-                    deactivateGame(scene)
-                }
-            )
-        );
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: '0'
-                },
-                function () {
-                    activateGame(scene);
-                }
-            )
-        );
     }
 
 }
@@ -249,6 +247,7 @@ let gameActive = false;
 
 function activateGame(scene){
     if(!gameActive) {
+        hitAmount = 0;
         let camera = scene.getCameraByName("UniversalCamera");
         camera.speed = 0;
         camera.position = new v3(0, 2.25, 7);
@@ -284,6 +283,9 @@ function createWaterTarget(scene){
     return BABYLON.Mesh.MergeMeshes([box, hat], true, false, false, true, true);
 }
 let hitAmount = 0;
+let mcgX = Math.random();
+let mcgY = Math.random();
+
 function waterGunLoop(){
     if(gameActive){
         watergun.rotation.x += movY * -1/100;
@@ -293,9 +295,20 @@ function waterGunLoop(){
                 hitAmount++;
             }
         }
-        stand.material.diffuseColor = new BABYLON.Color3(1,1-hitAmount/1000,1-hitAmount/1000);
         if(hitAmount >= 1000){
             deactivateGame(scene);
+        }
+        target.position.x += mcgX/25;
+        target.position.y += mcgY/25;
+        if(target.position.y >= 3){
+            mcgY = -Math.random();
+        }else if(target.position.y <= 1){
+            mcgY = Math.random();
+        }
+        if(target.position.x > 3){
+            mcgX = -Math.random();
+        }else if(target.position.x < -3){
+            mcgX = Math.random();
         }
     }
     else{

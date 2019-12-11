@@ -42,8 +42,6 @@ function createWaterGame(scene){
     stand = createStand(scene);
     stand.position = middleOfArea;
     stand.checkCollisions = true;
-    stand.material = new BABYLON.StandardMaterial("standMat", scene);
-    stand.material.diffuseColor = new BABYLON.Color3(1,1,1);
 
     watergun = createWaterGun(scene);
     watergun.position = new v3(0,1.75, 8);
@@ -179,22 +177,35 @@ function createWaterGame(scene){
 }
 
 function createStand(scene){
+    let mat = new BABYLON.StandardMaterial("standMat", scene);
+    mat.diffuseTexture = new BABYLON.Texture("assets/textures/game/redwhiteblue.jpg", scene);
+    mat.hasAlpha = true;
+
+    let mat1 = new BABYLON.StandardMaterial("standMat", scene);
+    mat1.diffuseTexture = new BABYLON.Texture("assets/textures/game/US_Flag.png", scene);
+    mat1.hasAlpha = true;
+
     let frontBox = bmb.CreateBox("frontStand", {height: 1.4, width: 7.5, depth: 1.4}, scene);
     frontBox.position = new v3(0,.7,-1.7);
+    frontBox.material = mat;
 
     let leftPole = bmb.CreateBox("leftPole", {height: 2.6, width: .2, depth: .2});
     leftPole.position = new v3(3.15, 2.7, -1.6);
+    leftPole.material = mat;
 
     let rightPole = bmb.CreateBox("rightPole", {height: 2.6, width: .2, depth: .2});
     rightPole.position = new v3(-3.15, 2.7, -1.6);
+    rightPole.material = mat;
 
     let roof = bmb.CreateBox("roof", {height: .2, width: 7.5, depth: 5});
     roof.position = new v3(0,3.9,0);
+    roof.material = mat;
 
     let backWall = bmb.CreateBox("backWall", {height: 4, width: 7.5, depth: .2});
     backWall.position = new v3(0,2,2.4);
+    backWall.material = mat1;
 
-    return BABYLON.Mesh.MergeMeshes([frontBox, leftPole, rightPole, roof, backWall]);
+    return BABYLON.Mesh.MergeMeshes([frontBox, leftPole, rightPole, roof, backWall], true, false, false, true, true);
 }
 
 function createWaterGun(scene){
